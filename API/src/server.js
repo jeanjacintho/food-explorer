@@ -3,14 +3,16 @@ require("express-async-errors");
 const cors = require("cors");
 const express = require("express");
 const routes = require("./routes");
-const cokkieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const AppError = require("./utils/AppError");
 const database = require("./database/sqlite");
+const uploadConfig = require("./config/upload");
 
 const app = express();
 database();
 app.use(express.json());
-app.use(cokkieParser());
+app.use(cookieParser());
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 app.use(cors({
     origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
     credentials: true

@@ -1,5 +1,5 @@
 const knex = require("../database/knex");
-const { hash }  = require("bcryptjs");
+const { hash, compare }  = require("bcryptjs");
 const AppError = require("../utils/AppError");
 
 class UsersController {
@@ -38,6 +38,9 @@ class UsersController {
             throw new AppError("User not found", 404);
         }
 
+        user.name = name ?? user.name;
+        user.email = email ?? user.email;
+
         if (!emailRegex.test(email)) {
             throw new AppError("Invalid email. Please enter an email in this format: example@email.com", 400);
         }
@@ -47,9 +50,6 @@ class UsersController {
         if(userWithUpdateEmail && userWithUpdateEmail.id !== user.id) {
             throw new AppError("Email already exists", 400);
         }
-
-        user.name = name ?? user.name;
-        user.email = email ?? user.email;
 
         if(password && !old_password) {
             throw new AppError("Old password is required", 400);
@@ -69,14 +69,14 @@ class UsersController {
             user.password = await hash(password, 8);
         }
 
-        await knex("users").where({id: user_id}).update({
+        await knex("users").update({
             name: user.name,
             email: user.email,
             password: user.password,
             updated_at: knex.fn.now()
-        });
+        }).where({id: user_id});
 
-        return response.status(200).json();
+        return response.status(200).json(user);
     }
 }
 

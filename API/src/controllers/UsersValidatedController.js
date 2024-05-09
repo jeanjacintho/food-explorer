@@ -5,7 +5,7 @@ class UsersValidatedController {
     async index(request, response) {
         const {user} = request;
 
-        const checkUserExists = await knex("users").where({id: user_id});
+        const checkUserExists = await knex("users").where({id: user.id});
 
         if (!checkUserExists) {
             throw new AppError("Unauthorized", 404);

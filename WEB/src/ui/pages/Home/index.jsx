@@ -1,12 +1,11 @@
-import { HomeContainer, Username, SignOutButton } from "./styles";
-import { useAuth } from "../../../hooks/auth";
+import { HomeContainer } from "./styles";
+
+import { Header } from "../../blocks/Header";
 
 export function Home () {
-    const { signOut, user } = useAuth();
     return (
         <HomeContainer>
-            <Username>Welcome, {user.name}</Username>
-            <SignOutButton onClick={signOut}>Sign Out</SignOutButton>
+            <Header />
         </HomeContainer> 
     )
 }

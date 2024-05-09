@@ -9,6 +9,7 @@ export const Container = styled.div`
     gap: 1.4rem;
     padding: 1.2rem 1.4rem;
     background-color: ${({theme}) => theme.COLORS.dark_200};
+    width: 100%;
 
     &:focus-within {
       border-color: ${({theme}) => theme.COLORS.light_100};

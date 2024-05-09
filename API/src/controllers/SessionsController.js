@@ -35,7 +35,7 @@ class SessionsController {
 
         delete user.password;
 
-        return response.status(200).json({token, user});
+        return response.status(201).json({user});
      }
 }
 

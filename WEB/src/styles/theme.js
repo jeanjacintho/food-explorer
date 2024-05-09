@@ -4,6 +4,8 @@ export default {
         light_300: "#E1E1E6",
         light_400: "#C4C4CC",
         light_500: "#7C7C8A",
+        light_600: "#76797B",
+        light_700: "#4D585E",
         dark_200: "#0D1D25",
         dark_400: "#001119",
         dark_1000: "#000405",

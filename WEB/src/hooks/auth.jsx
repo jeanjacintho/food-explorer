@@ -1,63 +1,103 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { api } from "../services/api";
   
-  const AuthContext = createContext({});
+const AuthContext = createContext({});
   
-  import { api } from "../services/api";
+function AuthProvider({ children }) {
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
   
-  function AuthProvider({ children }) {
-    const [data, setData] = useState({});
-  
-    async function signIn({ email, password }) {
-      try {
-        const response = await api.post("sessions", { email, password }, { withCredentials: true });
-        const { user } = response.data;
-  
-        localStorage.setItem("@food-explorer:user", JSON.stringify(user));
-  
-        setData({ user });
-  
-      } catch (error) {
-        if (error.response) {
-          alert(error.response.data.message);
-        } else {
-            alert("Could not sign in.");
-        }
+  async function signIn({ email, password }) {
+    try {
+      setLoading(true);
+      const response = await api.post("sessions", { email, password }, { withCredentials: true });
+      const { user } = response.data;
+
+      localStorage.setItem("@food-explorer:user", JSON.stringify(user));
+      setData({ user });
+
+      setLoading(false);
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+          alert("Could not sign in.");
       }
     }
-  
-    function signOut() {
-      localStorage.removeItem("@food-explorer:user");
-  
-      setData({});
-    }
-  
-  
-    useEffect(() => {
-      const user = localStorage.getItem("@food-explorer:user");
-  
-      if (user) {
-  
-        setData({
-          user: JSON.parse(user)
-        });
+  }
+
+  function signOut() {
+    localStorage.removeItem("@food-explorer:user");
+    setData({});
+  }
+
+  async function updateProfile({user, userUpdated, avatarFile}) {
+    try {
+      if(avatarFile) {
+        setLoading(true);
+
+        const fileUpdateForm = new FormData();
+        fileUpdateForm.append("avatar", avatarFile);
+        
+        const response = await api.patch("/users/avatar", fileUpdateForm);
+
+        user.avatar = response.data.avatar;
       }
-    }, []);
-  
-    return (
-      <AuthContext.Provider value={{
-        signIn,
-        signOut,
-        user: data.user
-      }}>
-        {children}
-      </AuthContext.Provider>
-    )
+
+      user.name = userUpdated.name;
+      user.email = userUpdated.email;
+      user.password =  userUpdated.password;
+      user.old_password =  userUpdated.old_password;
+
+      await api.put("/users", user);
+
+      delete user.password;
+      delete user.old_password;
+
+      localStorage.setItem("@food-explorer:user", JSON.stringify(user));
+      setData({user});
+
+      alert("updated profile");
+      
+      setLoading(false);
+    } catch (error) {
+      if(error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Could not update profile");
+      }
+      setLoading(false);
+    }
   }
-  
-  function useAuth() {
-    const context = useContext(AuthContext);
-  
-    return context;
-  }
-  
-  export { AuthProvider, useAuth };
+
+  useEffect(() => {
+    const user = localStorage.getItem("@food-explorer:user");
+
+    if (user) {
+      setData({
+        user: JSON.parse(user)
+      });
+    }
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{
+      signIn,
+      signOut,
+      loading,
+      setLoading,
+      updateProfile,
+      user: data.user
+    }}>
+      {children}
+    </AuthContext.Provider>
+  )
+}
+
+function useAuth() {
+  const context = useContext(AuthContext);
+
+  return context;
+}
+
+export { AuthProvider, useAuth };
