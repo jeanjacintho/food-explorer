@@ -21,7 +21,7 @@ function AuthProvider({ children }) {
       if (error.response) {
         alert(error.response.data.message);
       } else {
-          alert("Could not sign in.");
+        alert("Could not sign in.");
       }
     }
   }
