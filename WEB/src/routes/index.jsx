@@ -31,7 +31,6 @@ export function Routes() {
 
   return (
     <BrowserRouter>
-
       {user ? <AcessRoute /> : <AuthRoutes />}
     </BrowserRouter>
   );

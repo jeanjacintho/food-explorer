@@ -19,8 +19,9 @@ export default createGlobalStyle`
         --webkit-font-smoothing: antialised;
     }
 
-    body, input, button, textarea {
+    body, input, button, textarea, select {
         font-size: 1.6rem;
+        font-family: 'Roboto', sans-serif;
     }
 
     a {

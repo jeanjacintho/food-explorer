@@ -14,6 +14,7 @@ export const FormLogin = styled.div`
     padding: 6.4rem;
     display: flex;
     flex-direction: column;
+    border: 1px solid ${({theme}) => theme.COLORS.border};
     border-radius: 1.6rem;
     gap: 3.2rem;
     text-align: center;

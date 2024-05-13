@@ -5,6 +5,7 @@ export const HeaderContainer = styled.div`
     position: sticky;
     top: 0;
     background-color: ${({theme}) => theme.COLORS.dark_400};
+    border-bottom: 1px solid ${({theme}) => theme.COLORS.border};
     color: ${({theme}) => theme.COLORS.light_100};
     grid-area: header;
 `;

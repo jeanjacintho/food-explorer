@@ -4,12 +4,14 @@ export const FooterContainer = styled.div`
     width: 100%;
     background-color: ${({theme}) => theme.COLORS.dark_400};
     color: ${({theme}) => theme.COLORS.light_100};
+    border-top: 1px solid ${({theme}) => theme.COLORS.border};
     grid-area: footer;
 `;
 
 export const FooterComponents = styled.div`
-    max-width: 135rem;
+    width: 135rem;
     display: flex;
+    margin: 0 auto;
     justify-content: space-between;
     gap: .8rem;
     padding: 2.4rem 12.3rem;

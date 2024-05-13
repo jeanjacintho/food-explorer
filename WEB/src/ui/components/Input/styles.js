@@ -22,9 +22,17 @@ export const Container = styled.div`
         border: none;
         color: ${({theme}) => theme.COLORS.light_500};
         font-size: 1.6rem;
-        font-size: 1.6rem;
         font-weight: 400;
         line-height: 100%;
+
+        &::file-selector-button {
+            height: 4.8rem;
+            border: none;
+            background-color: transparent;
+            opacity: 0;
+            width: 1px;
+            margin-left: -1.6rem;
+        }
 
         &:focus {
             outline: none;

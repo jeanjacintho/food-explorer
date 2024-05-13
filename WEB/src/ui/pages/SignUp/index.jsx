@@ -12,6 +12,7 @@ export function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -20,11 +21,14 @@ export function SignUp() {
             return alert("Fill in all fields")
         }
 
+        setLoading(true);
+
         api.post("/users", {name, email, password}).then(() => {
             alert("User created successfully");
             setName("");
             setEmail("");
             setPassword("");
+            setLoading(false);
             navigate("/");
         }).catch(error => {
             if(error.response) {
@@ -33,6 +37,8 @@ export function SignUp() {
                 alert("Unable to register");
             }
             
+        }).finally(() => {
+            setLoading(false);
         })
     }
     return (
@@ -55,7 +61,7 @@ export function SignUp() {
                     <span>Senha</span>
                     <Input placeholder="Máximo 6 caracteres" type="password" icon={PiPassword} onChange={e => setPassword(e.target.value)} />
                 </InputContainer>
-                <Button text="Criar conta" onClick={handleSignUp}/>
+                <Button text="Criar conta" onClick={handleSignUp} loading={loading} />
                 <Link to="/"><PiArrowLeft />Já tenho uma conta</Link>
             </FormLogin>
         </SignUpContainer>

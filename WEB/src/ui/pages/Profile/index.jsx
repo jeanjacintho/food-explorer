@@ -1,15 +1,13 @@
-import { ProfileContainer, FormProfile, InputContainer, FormAvatar, FormContainer } from "./styles";
+import { ProfileContainer, FormProfile, InputContainer, FormAvatar } from "./styles";
 import { api } from "../../../services/api";
 import { useState } from "react";
 import { useAuth } from "../../../hooks/auth";
 
 import { PiEnvelope, PiPassword, PiUser, PiCamera } from "react-icons/pi";
 
-import { Header } from "../../blocks/Header"
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Avatar } from "../../components/Avatar";
-import { Footer } from "../../blocks/Footer";
 
 export function Profile() {
     const { user, updateProfile, loading } = useAuth();
@@ -38,41 +36,37 @@ export function Profile() {
 
     return (
         <ProfileContainer>
-            <Header />
-            <FormContainer>
-                <FormAvatar>
-                    <Avatar avatarPicture={avatar} name={user.name} size="20"/>
-                    <label htmlFor="avatar">
-                        <PiCamera />
-                        <input id="avatar" type="file" accept="image/*" onChange={handleChangeAvatar} />
-                    </label>
-                    
-                    <div className="userData">
-                        <h1>{user.name}</h1>
-                        <span>{user.email}</span>
-                    </div>
-                </FormAvatar>
-                <FormProfile>
-                    <InputContainer>
-                        <span>Nome</span>
-                        <Input placeholder="Nome" type="text" value={name} icon={PiUser} onChange={e => setName(e.target.value)} />
-                    </InputContainer>
-                    <InputContainer>
-                        <span>Email</span>
-                        <Input placeholder="Email" type="email" value={email} icon={PiEnvelope} onChange={e => setEmail(e.target.value)}/>
-                    </InputContainer>
-                    <InputContainer>
-                        <span>Senha atual</span>
-                        <Input placeholder="A senha deve conter no mínimo 6 caracteres" type="password" icon={PiPassword} onChange={e => setPasswordOld(e.target.value)}/>
-                    </InputContainer>
-                    <InputContainer>
-                        <span>Nova senha</span>
-                        <Input placeholder="A senha deve conter no mínimo 6 caracteres" type="password" icon={PiPassword} onChange={e => setPasswordNew(e.target.value)}/>
-                    </InputContainer>
-                    <Button text={loading ? "Salvando" : "Salvar"} onClick={handleUpdateProfile} disabled={loading} />
-                </FormProfile>
-            </FormContainer>
-            <Footer />
+            <FormAvatar>
+                <Avatar avatarPicture={avatar} name={user.name} size="20"/>
+                <label htmlFor="avatar">
+                    <PiCamera />
+                    <input id="avatar" type="file" accept="image/*" onChange={handleChangeAvatar} />
+                </label>
+                
+                <div className="userData">
+                    <h1>{user.name}</h1>
+                    <span>{user.email}</span>
+                </div>
+            </FormAvatar>
+            <FormProfile>
+                <InputContainer>
+                    <span>Nome</span>
+                    <Input placeholder="Nome" type="text" value={name} icon={PiUser} onChange={e => setName(e.target.value)} />
+                </InputContainer>
+                <InputContainer>
+                    <span>Email</span>
+                    <Input placeholder="Email" type="email" value={email} icon={PiEnvelope} onChange={e => setEmail(e.target.value)}/>
+                </InputContainer>
+                <InputContainer>
+                    <span>Senha atual</span>
+                    <Input placeholder="A senha deve conter no mínimo 6 caracteres" type="password" icon={PiPassword} onChange={e => setPasswordOld(e.target.value)}/>
+                </InputContainer>
+                <InputContainer>
+                    <span>Nova senha</span>
+                    <Input placeholder="A senha deve conter no mínimo 6 caracteres" type="password" icon={PiPassword} onChange={e => setPasswordNew(e.target.value)}/>
+                </InputContainer>
+                <Button text={loading ? "Salvando" : "Salvar"} onClick={handleUpdateProfile} disabled={loading} />
+            </FormProfile>
         </ProfileContainer>
     )
 }

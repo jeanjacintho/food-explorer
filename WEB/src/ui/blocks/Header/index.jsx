@@ -26,7 +26,11 @@ export function Header() {
                     </Link>
                 </Logo>
                 <Input placeholder="Busque por pratos ou ingredientes" icon={PiMagnifyingGlass}/>
-                {user.role === USER_ROLE.ADMIN ? <Button className="order" text="Novo prato" icon={PiChefHat} /> : <Button className="order" text="pedidos" icon={PiReceipt} />}
+                {user.role === USER_ROLE.ADMIN ? 
+                    <Link to="/dishes"><Button className="order" text="Novo prato" icon={PiChefHat} /></Link>
+                : 
+                    <Button className="order" text="Pedidos" icon={PiReceipt} />
+                }
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Avatar avatarPicture={avatarURL} name={user.name} size="4"/>

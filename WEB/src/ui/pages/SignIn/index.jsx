@@ -11,12 +11,15 @@ import { Input } from "../../components/Input";
 export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const { signIn } = useAuth();
 
     function handleSignIn() {
-    signIn({ email, password });
-  }
+        setLoading(true);
+        signIn({ email, password });
+        setLoading(false);
+    }
     return (
         <SignInContainer>
             <Logo>
@@ -33,7 +36,7 @@ export function SignIn() {
                     <span>Senha</span>
                     <Input placeholder="Máximo 6 caracteres" icon={PiPassword} type="password" onChange={e => setPassword(e.target.value)} />
                 </InputContainer>
-                <Button text="Entrar" onClick={handleSignIn} />
+                <Button text="Entrar" onClick={handleSignIn} loading={loading}/>
                 <Link to="/register"><PiUserPlus />Criar uma conta</Link>
             </FormLogin>
         </SignInContainer>
