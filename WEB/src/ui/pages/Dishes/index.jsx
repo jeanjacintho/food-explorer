@@ -42,7 +42,7 @@ export function Dishes() {
         async function fetchDish() {
             try {
                 const response = await api.get(`/dishes/${params.id}`);
-                setDish(response.data)
+                setDish(response.data);
                 if(params.id !== undefined) {
                     setUpdatedDish(true);
                 } else {
@@ -257,7 +257,7 @@ export function Dishes() {
                 </BlockComponent>
                 <GroupColumnComponent>
                     {updatedDish && <span>Última alteração em: {updatedAt}</span>}
-                    {updatedDish && <Button icon={PiTrash} text="Excluir prato" className="delete" loading={loading} onClick={handleRemoveDish}/>}
+                    {updatedDish && <Button icon={PiTrash} text="Excluir prato" className="delete" loading={loading} variant="outline" onClick={handleRemoveDish}/>}
                     <Button icon={PiFloppyDisk} text="Salvar alterações" className="save" loading={loading} onClick={handleEditDish}/>
                 </GroupColumnComponent>
             </FormDish>
