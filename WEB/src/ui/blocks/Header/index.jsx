@@ -4,6 +4,8 @@ import { useAuth } from "../../../hooks/auth";
 import { api } from "../../../services/api";
 import { Link } from "react-router-dom";
 import { USER_ROLE } from '../../../utils/roles'
+import { SearchContext } from "../../../hooks/searchProvider";
+import { useContext } from "react";
 
 import logo from "../../../assets/logo.svg";
 import { Input } from "../../components/Input"
@@ -12,9 +14,14 @@ import { Avatar } from "../../components/Avatar"
 import { DropdownMenu } from "../../components/DropdownMenu";
 import { DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "../../components/DropdownMenu/styles";
 
-export function Header() {
+export function Header({setSearch}) {
     const { signOut, user } = useAuth();
+    const { searchTerm, setSearchTerm } = useContext(SearchContext);
     const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : '';
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    }
     
     return (
         <HeaderContainer>
@@ -25,9 +32,9 @@ export function Header() {
                         <span>Food Explorer</span>
                     </Link>
                 </Logo>
-                <Input placeholder="Busque por pratos ou ingredientes" icon={PiMagnifyingGlass}/>
+                <Input placeholder="Busque por pratos ou ingredientes" icon={PiMagnifyingGlass} onChange={handleSearch} value={searchTerm || ''}/>
                 {user.role === USER_ROLE.ADMIN ? 
-                    <Link to="/dishes"><Button className="order" text="Novo prato" icon={PiChefHat} /></Link>
+                    <Link to="/createdish"><Button className="order" text="Novo prato" icon={PiChefHat} /></Link>
                 : 
                     <Button className="order" text="Pedidos" icon={PiReceipt} />
                 }

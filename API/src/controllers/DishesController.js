@@ -102,7 +102,7 @@ class DishesController {
     }
 
     async index(request, response) {
-        const {search} = request.query;
+        const { search } = request.query;
 
         let dishes;
 

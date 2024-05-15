@@ -8,6 +8,7 @@ export const HeaderContainer = styled.div`
     border-bottom: 1px solid ${({theme}) => theme.COLORS.border};
     color: ${({theme}) => theme.COLORS.light_100};
     grid-area: header;
+    z-index: 999;
 `;
 
 export const HeaderComponents = styled.div`
