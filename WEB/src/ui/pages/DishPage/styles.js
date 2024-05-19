@@ -17,6 +17,7 @@ export const FormDish = styled.div`
     > img {
         width: 100%;
         max-width: 26.4rem;
+        max-height: 26.4rem;
     }
 
     > main {

@@ -29,7 +29,7 @@ export const CardContainer = styled.div`
         height: 17.6rem;
     }
 
-    > h1 {
+    > a > h1 {
         font-weight: bold;
         font-size: 2.4rem;
         line-height: 140%;
@@ -37,7 +37,9 @@ export const CardContainer = styled.div`
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical; 
+        -webkit-box-orient: vertical;
+        text-decoration: none;
+        color: ${({theme}) => theme.COLORS.light_100};
     }
 
     > p {

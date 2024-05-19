@@ -5,7 +5,6 @@ export const ButtonContainer = styled.button`
     border-radius: .5rem;
     display: flex;
     gap: .8rem;
-    padding: 1.2rem 3.2rem;
     align-items: center;
     justify-content: center;
     
@@ -20,6 +19,7 @@ export const ButtonContainer = styled.button`
                     border: 1px solid ${({theme}) => theme.COLORS.light_400};
                     color: ${({theme}) => theme.COLORS.light_400};
                     background: none;
+                    padding: 1.2rem 3.2rem;
 
                     &:disabled {
                         background-color: ${({theme}) => theme.COLORS.light_600};
@@ -36,6 +36,7 @@ export const ButtonContainer = styled.button`
                     background-color: none;
                     border: none;
                     color: ${({theme}) => theme.COLORS.light_400};
+                    padding: 2rem;
 
                     &:disabled {
                         color: ${({theme}) => theme.COLORS.light_600};
@@ -52,7 +53,7 @@ export const ButtonContainer = styled.button`
                     background-color: ${({theme}) => theme.COLORS.tomato_400};
                     border: none;
                     color: ${({theme}) => theme.COLORS.light_100};
-
+                    padding: 1.2rem 3.2rem;
 
                     &:disabled {
                         background-color: ${({theme}) => theme.COLORS.tomato_100};

@@ -28,6 +28,37 @@ export function Home() {
         fetchDishes();
     },[searchTerm]);
 
+    const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        const fetchFavorites = async () => {
+            try {
+                const response = await api.get("/favorites");
+                const favorites = response.data.map((favorite) => favorite.dish_id);
+
+                setFavorites(favorites);
+            } catch (error) {
+                console.log("Error when searching for favorites:", error);
+            }
+        };
+        fetchFavorites();
+    }, []);
+
+    async function updateFavorite(isFavorite, dishId) {
+        try {
+            if(isFavorite) {
+                await api.delete(`/favorites/${dishId}`);
+
+                setFavorites((prevFavorites) => prevFavorites.filter((favorite) => favorite !== dishId));
+            } else {
+                await api.post("/favorites", {dish_id: dishId});
+                setFavorites((prevFavorites) => [...prevFavorites, dishId]);
+            } 
+        } catch (error) {
+            console.log("Error updating favorites:", error);
+        }
+    }
+
     return (
         <HomeContainer>
             
@@ -45,7 +76,7 @@ export function Home() {
                         if(dish.category === "dishes") {
                             return (
                                 <swiper-slide key={String(dish.id)}>
-                                    <Card data={dish} />
+                                    <Card data={dish} isFavorite={favorites.includes(dish.id)} updateFavorite={updateFavorite}/>
                                 </swiper-slide>
                             )
                         }
@@ -59,7 +90,7 @@ export function Home() {
                         if(dish.category === "dessert") {
                             return (
                                 <swiper-slide key={String(dish.id)}>
-                                    <Card data={dish} />
+                                    <Card data={dish} isFavorite={favorites.includes(dish.id)} updateFavorite={updateFavorite}/>
                                 </swiper-slide>
                             )
                         }
@@ -73,7 +104,7 @@ export function Home() {
                         if(dish.category === "drinks") {
                             return (
                                 <swiper-slide key={String(dish.id)}>
-                                    <Card data={dish} />
+                                    <Card data={dish} isFavorite={favorites.includes(dish.id)} updateFavorite={updateFavorite}/>
                                 </swiper-slide>
                             )
                         }

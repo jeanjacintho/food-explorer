@@ -1,11 +1,13 @@
 import { HeaderContainer, Logo, HeaderComponents } from "./styles";
-import { PiMagnifyingGlass, PiReceipt, PiSignOut, PiChefHat, PiUserCircle } from "react-icons/pi";
+import { PiMagnifyingGlass, PiReceipt, PiSignOut, PiChefHat, PiUserCircle, PiHeart, PiChartDonut } from "react-icons/pi";
 import { useAuth } from "../../../hooks/auth";
 import { api } from "../../../services/api";
 import { Link } from "react-router-dom";
 import { USER_ROLE } from '../../../utils/roles'
 import { SearchContext } from "../../../hooks/searchProvider";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../../hooks/cart";
 
 import logo from "../../../assets/logo.svg";
 import { Input } from "../../components/Input"
@@ -18,9 +20,20 @@ export function Header({setSearch}) {
     const { signOut, user } = useAuth();
     const { searchTerm, setSearchTerm } = useContext(SearchContext);
     const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : '';
+    const navigate = useNavigate();
+    const { cart } = useCart(); 
+    console.log(cart)
 
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
+    }
+
+    const handleOrders = () => {
+        navigate("/orders");
+    }
+
+    const handleFavorites = () => {
+        navigate("/favorites");
     }
     
     return (
@@ -36,8 +49,9 @@ export function Header({setSearch}) {
                 {user.role === USER_ROLE.ADMIN ? 
                     <Link to="/createdish"><Button className="order" text="Novo prato" icon={PiChefHat} /></Link>
                 : 
-                    <Button className="order" text="Pedidos" icon={PiReceipt} />
+                    <Button className="order" text={`Pedidos (${cart.length})`} icon={PiReceipt} onClick={handleOrders} />
                 }
+                {user.role === USER_ROLE.ADMIN ? <Button className="dashboard" text="Dashboard" icon={PiChartDonut} /> : <Button className="favorites" onClick={handleFavorites} text="Favoritos" icon={PiHeart} />}
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Avatar avatarPicture={avatarURL} name={user.name} size="4"/>
