@@ -9,6 +9,7 @@ import { DishPage } from "../ui/pages/DishPage";
 import { Favorites } from "../ui/pages/Favorites";
 import { CartOrder } from "../ui/pages/CartOrder";
 import { CartProvider } from "../hooks/cart";
+import { HistoryOrders } from "../ui/pages/HistoryOrders";
 
 export function CustomerRoutes() {
     return (
@@ -20,6 +21,7 @@ export function CustomerRoutes() {
                     <Route path="/details/:id" exact={true} element={<DishPage />} />
                     <Route path="/favorites" element={<Favorites />} />
                     <Route path="/orders" element={<CartOrder />} />
+                    <Route path="/history" element={<HistoryOrders />} />
 
                     <Route path="*" exact={true} element={<NotFound />} />
                 </Routes>

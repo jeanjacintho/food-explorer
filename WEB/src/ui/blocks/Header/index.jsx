@@ -1,5 +1,5 @@
 import { HeaderContainer, Logo, HeaderComponents } from "./styles";
-import { PiMagnifyingGlass, PiReceipt, PiSignOut, PiChefHat, PiUserCircle, PiHeart, PiChartDonut } from "react-icons/pi";
+import { PiMagnifyingGlass, PiReceipt, PiSignOut, PiChefHat, PiUserCircle, PiHeart, PiChartDonut, PiListBullets } from "react-icons/pi";
 import { useAuth } from "../../../hooks/auth";
 import { api } from "../../../services/api";
 import { Link } from "react-router-dom";
@@ -35,6 +35,10 @@ export function Header({setSearch}) {
     const handleFavorites = () => {
         navigate("/favorites");
     }
+
+    const handleDashboard = () => {
+        navigate("/dashboard");
+    }
     
     return (
         <HeaderContainer>
@@ -51,7 +55,7 @@ export function Header({setSearch}) {
                 : 
                     <Button className="order" text={`Pedidos (${cart.length})`} icon={PiReceipt} onClick={handleOrders} />
                 }
-                {user.role === USER_ROLE.ADMIN ? <Button className="dashboard" text="Dashboard" icon={PiChartDonut} /> : <Button className="favorites" onClick={handleFavorites} text="Favoritos" icon={PiHeart} />}
+                {user.role === USER_ROLE.ADMIN ? <Button className="dashboard" text="Dashboard" icon={PiChartDonut} onClick={handleDashboard}/> : <Button className="favorites" onClick={handleFavorites} text="Favoritos" icon={PiHeart} />}
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Avatar avatarPicture={avatarURL} name={user.name} size="4"/>
@@ -66,6 +70,17 @@ export function Header({setSearch}) {
                                 <PiUserCircle size={16}/><span>Perfil</span>
                             </DropdownMenuItem>
                         </Link>
+                        {
+                            user.role === USER_ROLE.CUSTOMER &&
+                            <>
+                            <DropdownMenuSeparator />
+                            <Link to="/history">
+                                <DropdownMenuItem>
+                                    <PiListBullets size={16}/><span>Histórico de pedidos</span>
+                                </DropdownMenuItem>
+                             </Link>
+                             </>
+                        }
                         <DropdownMenuSeparator />
                         <Link to="/" onClick={signOut}>
                             <DropdownMenuItem>

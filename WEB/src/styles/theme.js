@@ -30,4 +30,24 @@ export default {
         gradient_100: "linear-gradient(180deg, #091E26 0%, #00131C 100%)",
         gradient_200: "linear-gradient(90deg, rgba(0, 10, 15, 0.272541) 0%, #000A0F 100%)",
     }
+};
+
+export const lightTheme = {
+        "light_100": "#000000",
+        "light_300": "#1E1E19",
+        "light_400": "#3B3B33",
+        "light_500": "#838375",
+        "light_600": "#898684",
+        "light_700": "#B2A7A1",
+        "dark_100": "#E6DDDA",
+        "dark_200": "#F2E2DA",
+        "dark_300": "#F2E9E4",
+        "dark_400": "#FFEEEC",
+        "dark_500": "#FFEEEA",
+        "dark_600": "#FFF3ED",
+        "dark_700": "#FFF5F0",
+        "dark_800": "#FFFDFF",
+        "dark_900": "#FFF8F5",
+        "dark_1000": "#FFFBFA",
+        "border": "#DACCC5",
 }

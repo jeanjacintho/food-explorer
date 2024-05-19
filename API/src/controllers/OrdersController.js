@@ -45,14 +45,16 @@ class OrdersController {
         const user = await knex("users").where({id: user_id}).first();
 
         if(user.role === "admin") {
-            const orders = await knex("ordersItems").where({user_id}).select([
+            const orders = await knex("ordersItems").select([
                 "orders.id",
                 "orders.user_id",
                 "orders.orderStatus",
                 "orders.totalPrice",
                 "orders.paymentMethod",
                 "orders.created_at",
-            ]).innerJoin("orders", "orders.id", "ordersItems.order_id").groupBy("orders.id");
+                "users.name as userName",
+            ]).innerJoin("orders", "orders.id", "ordersItems.order_id")
+            .innerJoin("users", "users.id", "orders.user_id").groupBy("orders.id");
 
             const ordersItems = await knex("ordersItems");
             const ordersWithItems = orders.map(order => {
@@ -65,7 +67,7 @@ class OrdersController {
 
             return response.status(200).json(ordersWithItems);
         } else {
-            const orders = await knex("ordersItems").select([
+            const orders = await knex("ordersItems").where({ user_id }).select([
                 "orders.id",
                 "orders.user_id",
                 "orders.orderStatus",
@@ -76,7 +78,7 @@ class OrdersController {
 
             const ordersItems = await knex("ordersItems");
             const ordersWithItems = orders.map(order => {
-                const orderItem = orderItems.filter(item => item.order_id === order.id);
+                const orderItem = ordersItems.filter(item => item.order_id === order.id);
 
                 return {
                    ...order,
