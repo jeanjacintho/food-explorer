@@ -12,6 +12,18 @@ export const SignUpContainer = styled.div`
         justify-content: center;
         gap: 3.2rem;
     }
+    opacity: 0;
+    animation: fadeIn .5s ease-in-out forwards;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 `;
 
 export const FormLogin = styled.div`

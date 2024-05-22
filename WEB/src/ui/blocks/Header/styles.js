@@ -10,6 +10,16 @@ export const HeaderContainer = styled.div`
     color: ${({theme}) => theme.COLORS.light_100};
     grid-area: header;
     z-index: 999;
+    opacity: 0;
+    animation: fadeIn .5s ease-in-out forwards;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 `;
 
 export const HeaderComponents = styled.div`
@@ -80,7 +90,7 @@ export const SettingsButton = styled.button`
 
 export const MenuSidebar = styled.div`
     position: absolute;
-    width: 100%;
+    width: 0rem;
     height: 100vh;
     background-color: ${({theme}) => theme.COLORS.dark_500};
     top: 0;
@@ -90,6 +100,11 @@ export const MenuSidebar = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4rem;
+    transition: width 0.5s ease-in-out;
+
+    &.open {
+        width: 100%;
+    }
 
     > div {
         display: flex;

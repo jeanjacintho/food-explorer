@@ -55,7 +55,7 @@ export function Header({setSearch}) {
                     isDesktop === false &&
                     <button className="menuSidebar"><PiList size={30} onClick={handleMenuOpen}/></button>
                 }
-                <MenuSidebar style={{display: `${menuOpen ? 'flex' : 'none'}`}}>
+                <MenuSidebar style={{opacity: `${menuOpen ? '100%' : '0%'}`}} className={`${menuOpen ? 'open' : ''}`}>
                     <PiX size={30} onClick={handleMenuOpen}/>
                     <div>
                         <Input placeholder="Busque por pratos ou ingredientes" icon={PiMagnifyingGlass} onChange={handleSearch} value={searchTerm || ''}/>

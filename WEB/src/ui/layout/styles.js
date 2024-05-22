@@ -12,8 +12,8 @@ export const LayoutContainer = styled.div`
         grid-area: content;
         display: flex;
         align-self: start;
-
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
 `;
+

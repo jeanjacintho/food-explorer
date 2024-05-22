@@ -7,6 +7,16 @@ export const FooterContainer = styled.div`
     color: ${({theme}) => theme.COLORS.light_100};
     border-top: 1px solid ${({theme}) => theme.COLORS.border};
     grid-area: footer;
+    opacity: 0;
+    animation: fadeIn .5s ease-in-out forwards;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 `;
 
 export const FooterComponents = styled.div`

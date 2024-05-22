@@ -10,6 +10,18 @@ export const CardContainer = styled.div`
     padding: 2.4rem;
     background-color: ${({theme}) => theme.COLORS.dark_500};
     align-items: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
     > button {
         position: absolute;

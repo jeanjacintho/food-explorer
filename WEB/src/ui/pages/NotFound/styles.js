@@ -17,6 +17,18 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -70%);
+  opacity: 0;
+    animation: fadeIn .5s ease-in-out forwards;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
   
   > a {
     color: ${({ theme }) => theme.COLORS.tomato_400};

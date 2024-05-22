@@ -7,6 +7,19 @@ export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4.8rem;
+    opacity: 0;
+    animation: fadeIn .5s ease-in-out forwards;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         max-width: ${LAYOUT_BREAKPOINTS.MD};
         width: 100%;
