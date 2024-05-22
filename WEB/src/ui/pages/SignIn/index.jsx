@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { SignInContainer, FormLogin, InputContainer, Logo } from "./styles";
 import { Link } from "react-router-dom";
-import { useAuth } from '../../../hooks/auth';
+import { useAuth, AuthContext } from '../../../hooks/auth';
 
 import { PiEnvelope, PiPassword, PiUserPlus } from "react-icons/pi";
 
@@ -11,14 +11,12 @@ import { Input } from "../../components/Input";
 export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
+    const { loading } = useContext(AuthContext);
 
     const { signIn } = useAuth();
 
     function handleSignIn() {
-        setLoading(true);
         signIn({ email, password });
-        setLoading(false);
     }
     return (
         <SignInContainer>

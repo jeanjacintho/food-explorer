@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const FavoritesConteiner = styled.div`
     margin: 0 auto;
@@ -18,6 +19,11 @@ export const FavoritesConteiner = styled.div`
             transform: translateY(0);
         }
     }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        padding: 2.4rem;
+        max-width: calc(${LAYOUT_BREAKPOINTS.MD} - 74px);
+        width: 100%;
+    }
 `;
 
 export const FavoritesCardContainer = styled.div`
@@ -25,4 +31,7 @@ export const FavoritesCardContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: 2.4rem;
     width: 100%;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;
