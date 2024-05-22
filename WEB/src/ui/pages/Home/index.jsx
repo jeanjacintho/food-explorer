@@ -7,6 +7,7 @@ import { api } from "../../../services/api";
 import { SearchContext } from "../../../hooks/searchProvider";
 
 import { useEffect, useState, useContext } from "react";
+import { useMediaQuery } from "react-responsive";
 import "swiper/css";
 import "swiper/css/navigation";
 import { register } from 'swiper/element/bundle';
@@ -15,6 +16,10 @@ register();
 export function Home() {
     const [dishes, setDishes] = useState([]);
     const { searchTerm } = useContext(SearchContext);
+    let widthScreen = window.innerWidth;
+    widthScreen = widthScreen - 48;
+
+    const isDesktop = useMediaQuery({ minWidth: 1024 });
 
     useEffect(() => {
         async function fetchDishes() {
@@ -71,7 +76,7 @@ export function Home() {
             </Banner>
             <BlockComponent>
                 <span>Pratos</span>
-                <swiper-container class="swipercontainer" navigation="true" loop="true" slides-per-view="4" grab-cursor="true" space-between="27">
+                <swiper-container class="swipercontainer" navigation="true" loop="true" slides-per-view={isDesktop ? "4" : "2"} grab-cursor="true" space-between={isDesktop ? "27" : "16"} style={{maxWidth: widthScreen}}>
                     { dishes.map(dish => {
                         if(dish.category === "dishes") {
                             return (
@@ -85,7 +90,7 @@ export function Home() {
             </BlockComponent>
             <BlockComponent>
                 <span>Sobremesas</span>
-                <swiper-container class="swipercontainer" navigation="true" loop="true" slides-per-view="4" grab-cursor="true" space-between="27">
+                <swiper-container class="swipercontainer" navigation="true" loop="true" slides-per-view={isDesktop ? "4" : "2"} grab-cursor="true" space-between={isDesktop ? "27" : "16"} style={{maxWidth: widthScreen}}>
                     { dishes.map(dish => {
                         if(dish.category === "dessert") {
                             return (
@@ -99,7 +104,7 @@ export function Home() {
             </BlockComponent>
             <BlockComponent>
                 <span>Bebidas</span>
-                <swiper-container class="swipercontainer" navigation="true" loop="true" slides-per-view="4" grab-cursor="true" space-between="27">
+                <swiper-container class="swipercontainer" navigation="true" loop="true" slides-per-view={isDesktop ? "4" : "2"} grab-cursor="true" space-between={isDesktop ? "27" : "16"} style={{maxWidth: widthScreen}}>
                     { dishes.map(dish => {
                         if(dish.category === "drinks") {
                             return (

@@ -1,4 +1,5 @@
 import { styled, css } from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const ButtonContainer = styled.button`
     height: 4.8rem;
@@ -33,19 +34,26 @@ export const ButtonContainer = styled.button`
                 `;
             case "icon":
                 return css`
-                    background-color: none;
-                    border: none;
-                    color: ${({theme}) => theme.COLORS.light_400};
+                    background-color: ${({theme}) => theme.COLORS.tomato_400};
+                    color: ${({theme}) => theme.COLORS.light_100};
                     padding: 2rem;
+                    border: none;
 
                     &:disabled {
-                        color: ${({theme}) => theme.COLORS.light_600};
+                        background-color: ${({theme}) => theme.COLORS.tomato_100};
                         pointer-events: none;
                     }
 
                     &:not(:disabled):hover {
-                        color: ${({theme}) => theme.COLORS.light_100};
-                        border-color: ${({theme}) => theme.COLORS.light_100};
+                        background-color: ${({theme}) => theme.COLORS.tomato_300};
+                    }
+                    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+                        width: 4.8rem;
+                        padding: 0rem;
+
+                        > span {
+                            display: none;
+                        }
                     }
                 `;
             default: 

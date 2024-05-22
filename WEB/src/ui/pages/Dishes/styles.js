@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const DishesContainer = styled.div`
     margin: 0 auto;
@@ -6,6 +7,11 @@ export const DishesContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        padding: 2.4rem;
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+    }
 `;
 
 export const FormDish = styled.div`
@@ -14,6 +20,7 @@ export const FormDish = styled.div`
     display: flex;
     flex-direction: column;
     gap: 3.2rem;
+
 `;
 
 export const BlockComponent = styled.div`
@@ -42,6 +49,10 @@ export const BlockComponent = styled.div`
         background-color: ${({theme}) => theme.COLORS.dark_200};
         flex-wrap: wrap;
     }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+    }
 `;
 
 export const GroupColumnComponent = styled.div`
@@ -54,6 +65,11 @@ export const GroupColumnComponent = styled.div`
         align-self: center;
         color: ${({theme}) => theme.COLORS.light_500};
         font-size: 1.4rem;
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        flex-direction: column;
     }
 `;
 

@@ -6,9 +6,11 @@ import { api } from "../../../services/api";
 import { PiCaretLeft } from "react-icons/pi";
 import { Button } from "../../components/Button";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export function HistoryOrders() {
     const navigate = useNavigate();
+    const isDesktop = useMediaQuery({ minWidth: 1024 });
 
     const [orders, setOrders] = useState([]);
 
@@ -34,7 +36,7 @@ export function HistoryOrders() {
             <div><Button icon={PiCaretLeft} variant="outline" text="Voltar" onClick={handleBack}/></div>
             <h1>Histórico de pedidos</h1>
             <div className="historyOrders">
-                {orders ?
+                {isDesktop &&
                 <table>
                     <thead >
                         <tr>
@@ -57,8 +59,23 @@ export function HistoryOrders() {
                     }
                     </tbody>
                 </table>
-                :
-                <p>Ainda não há histórico de pedidos</p>}
+                }
+                {isDesktop === false &&
+                <table>
+                    <tbody>
+                    {
+                        orders.map(item => (
+                            <tr key={String(item.id)}>
+                                <td>
+                                    <div><span className={item.orderStatus}></span>{item.orderStatus}<p>{item.id}</p></div>
+                                    <div><strong>R$ {item.totalPrice}</strong><p>{item.created_at}</p></div>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                    </tbody>
+                </table>
+                }
             </div>
         </HistoryOrdersContainer>
     )

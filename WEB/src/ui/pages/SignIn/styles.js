@@ -1,4 +1,5 @@
 import styled  from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const SignInContainer = styled.div`
     height: 100vh;
@@ -6,7 +7,12 @@ export const SignInContainer = styled.div`
     align-items: center;
     display: flex;
     justify-content: space-evenly;
-
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3.2rem;
+    }
 `;
 
 export const FormLogin = styled.div`
@@ -18,7 +24,6 @@ export const FormLogin = styled.div`
     border-radius: 1.6rem;
     gap: 3.2rem;
     text-align: center;
-
     background-color: ${({theme}) => theme.COLORS.dark_400};
 
     > h1 {
@@ -44,6 +49,10 @@ export const FormLogin = styled.div`
             color: ${({theme}) => theme.COLORS.light_400};
         }
     }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        width: 95%;
+        padding: 2.4rem;
+    }
 `;
 
 export const InputContainer = styled.div`
@@ -65,7 +74,7 @@ export const Logo = styled.div`
     align-items: center;
     gap: 1.9rem;
 
-    > svg {
+    > img {
         width: 4.94rem;
     }
 
@@ -73,5 +82,15 @@ export const Logo = styled.div`
         font-size: 4.2rem;
         font-weight: 700;
         color: ${({theme}) => theme.COLORS.light_100};
+    }
+
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        > img {
+            width: 3.4rem;
+        }
+
+        > span {
+            font-size: 3.4rem;
+        }
     }
 `;

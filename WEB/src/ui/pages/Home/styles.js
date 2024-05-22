@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const HomeContainer = styled.div`
     margin: 0 auto;
@@ -6,6 +7,13 @@ export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4.8rem;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        padding: 2.4rem;
+        margin: 0;
+        gap: 3.6rem;
+    }
 `;
 
 export const Banner = styled.div`
@@ -36,6 +44,23 @@ export const Banner = styled.div`
         margin-top: -12.4rem;
         margin-bottom: -6.8rem;
     }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        height: 6rem;
+        margin-top: 1rem;
+        > div {
+            > h1 {
+                font-size: 2rem;
+            }
+            > p {
+                font-size: 1.2rem;
+            }
+        }
+        > img {
+            width: 15rem;
+            margin-bottom: -9.4rem;
+            margin-left: -1.8rem;
+        }
+    }
 `;
 
 export const BlockComponent = styled.div`
@@ -51,5 +76,12 @@ export const BlockComponent = styled.div`
         font-size: 3.2rem;
         font-weight: 500;
         line-height: 140%;
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        
+        > span {
+            font-size: 1.8rem;
+        }
     }
 `;

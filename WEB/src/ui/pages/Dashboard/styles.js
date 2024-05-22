@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const DashboardContainer = styled.div`
     margin: 0 auto;
@@ -84,6 +85,11 @@ export const DashboardContainer = styled.div`
                 }
             }
         }
+        @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+            max-width: ${LAYOUT_BREAKPOINTS.MD};
+            width: 100%;
+            padding: 2.4rem;
+        }
 `;
 
 export const HistoryOrders = styled.div`
@@ -115,6 +121,10 @@ export const Order = styled.div`
             flex-direction: column;
             gap: 1.2rem;
         }
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
     }
 `;
 

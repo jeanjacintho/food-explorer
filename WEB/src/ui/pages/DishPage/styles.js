@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const DishPageContainer = styled.div`
     margin: 0 auto;
@@ -6,6 +7,11 @@ export const DishPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        padding: 2.4rem;
+    }
 `;
 
 export const FormDish = styled.div`
@@ -18,6 +24,9 @@ export const FormDish = styled.div`
         width: 100%;
         max-width: 26.4rem;
         max-height: 26.4rem;
+        @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+            align-self: center;
+        }
     }
 
     > main {
@@ -41,6 +50,12 @@ export const FormDish = styled.div`
         > div {
             display: flex;
             gap: 3.3rem;
+
+            @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+                > button {
+                    width: 100%;
+                }
+            }
         }
 
         > section {
@@ -60,5 +75,8 @@ export const FormDish = styled.div`
                 }
             }
         }
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        flex-direction: column;
     }
 `;

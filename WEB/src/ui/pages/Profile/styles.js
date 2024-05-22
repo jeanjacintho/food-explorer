@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const ProfileContainer = styled.div`
     display: flex;
@@ -11,6 +12,12 @@ export const ProfileContainer = styled.div`
     justify-content: space-evenly;
     padding: 3.2rem;
     background-color: ${({theme}) => theme.COLORS.dark_400};
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        padding: 2.4rem;
+        flex-direction: column;
+    }
 `;
 
 export const FormProfile = styled.div`
@@ -18,6 +25,10 @@ export const FormProfile = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+    }
 `;
 
 export const FormAvatar = styled.div`
@@ -60,6 +71,11 @@ export const FormAvatar = styled.div`
         width: 80%;
         padding: 2rem;
         border-radius: 1rem;
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        margin-bottom: 5rem;
     }
 `;
 

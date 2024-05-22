@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const HistoryOrdersContainer = styled.div`
     margin: 0 auto;
@@ -6,6 +7,12 @@ export const HistoryOrdersContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
+
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        padding: 2.4rem;
+    }
 
     .historyOrders {
         display: flex;
@@ -50,7 +57,7 @@ export const HistoryOrdersContainer = styled.div`
                             border-radius: 50%;
 
                             &.Cancelado {
-                                background-color: ${({theme}) => theme.COLORS.tomate_300};
+                                background-color: ${({theme}) => theme.COLORS.tomato_300};
                             }
                             &.Pendente {
                                 background-color: ${({theme}) => theme.COLORS.carrot_100};

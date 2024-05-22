@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const FooterContainer = styled.div`
     width: 100%;
@@ -12,6 +13,7 @@ export const FooterComponents = styled.div`
     width: 135rem;
     display: flex;
     margin: 0 auto;
+    height: 100%;
     justify-content: space-between;
     gap: .8rem;
     padding: 2.4rem 12.3rem;
@@ -21,6 +23,14 @@ export const FooterComponents = styled.div`
         font-weight: 400;
         font-size: 1.4rem;
         line-height: 160%;
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        margin: 0;
+        padding: 2.4rem;
+        align-items: center;
+        flex-direction: column;
     }
 `;
 
@@ -41,6 +51,15 @@ export const Logo = styled.div`
         span {
             font-weight: 700;
             font-size: 2.4rem;
+        }
+        @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+            img {
+                height: 2rem;
+                width: 2rem;
+            }
+            span {
+                font-size: 2rem;
+            }
         }
     }
 `;

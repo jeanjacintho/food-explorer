@@ -6,12 +6,14 @@ import { PiCaretLeft, PiX, PiReceiptX, PiForkKnife } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
+import { useMediaQuery } from "react-responsive";
 
 export function Dashboard() {
     const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState(null);
     const [isOrderOpen, setIsOrderOpen] = useState(false);
+    const isDesktop = useMediaQuery({ minWidth: 1024 });
 
     function handleBack() {
         navigate(-1);
@@ -70,7 +72,7 @@ export function Dashboard() {
             <div><Button icon={PiCaretLeft} variant="outline" text="Voltar" onClick={handleBack}/></div>
             <h1>Dashboard</h1>
             <div>
-            <HistoryOrders>
+            {isDesktop && <HistoryOrders>
                 <table className="tableDetails">
                     <thead>
                         <tr>
@@ -106,6 +108,32 @@ export function Dashboard() {
                     </tbody>
                 </table>
             </HistoryOrders>
+            }
+            {isDesktop == false && 
+            <HistoryOrders>
+                <table className="tableDetails">
+                    <tbody>
+                    {orders.slice().reverse().map(order => (
+                        <tr key={String(order.id)} onClick={() => handleOrderDetails(order)}>
+                            <td>
+                                <div><span className={order.orderStatus}></span>{order.orderStatus}<p>{order.id}</p><p>{order.created_at}</p></div>
+                                <div><p>{order.userName}</p><p>{order.paymentMethod}</p></div>
+                                <div className="detalhamento">
+                                        {
+                                            order.items.map((item, index, array) => (
+                                                <p key={index}>
+                                                    {item.quantity}X {item.title}{index !== array.length - 1 && ','}
+                                                </p>
+                                            ))
+                                        }
+                                    </div>
+                            </td>
+                        </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </HistoryOrders>
+            }
             <Order style={{display: `${isOrderOpen ? 'flex' : 'none'}`}}>
                 <GroupColumnComponent>
                     <PiX size={30} onClick={handleOrderDetailsOpen} style={{cursor: "pointer"}}/>

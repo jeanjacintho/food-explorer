@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const CardContainer = styled.div`
     display: flex;
@@ -59,6 +60,25 @@ export const CardContainer = styled.div`
         font-weight: 400;
         color: ${({theme}) => theme.COLORS.cake_100};
     }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        padding: 1.6rem;
+        > img {
+            width: 12rem;
+            height: 12rem;
+        }
+
+        > a > h1 {
+            font-size: 1.8rem;
+        }
+
+        > p {
+            font-size: 1.2rem;
+        }
+
+        > span {
+            font-size: 2.2rem;
+        }
+    }
 `;
 
 export const GroupColumnComponent = styled.div`
@@ -66,4 +86,8 @@ export const GroupColumnComponent = styled.div`
     display: flex;
     justify-content: center;
     gap: 3.2rem;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        flex-direction: column;
+        align-items: center;
+    }
 `;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const Container = styled.div`
   min-height: 20rem;
-  max-width: fit-content;
   min-width: 20rem;
   padding: 4rem 8rem;
   border: 1px solid ${({theme}) => theme.COLORS.border};
@@ -27,6 +27,13 @@ export const Container = styled.div`
 
     &:hover {
       color: ${({ theme }) => theme.COLORS.tomato_300};
+    }
+  }
+  @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    padding: 2rem 4rem;
+    width: 95%;
+    > h1 {
+      font-size: 2rem;
     }
   }
 `;

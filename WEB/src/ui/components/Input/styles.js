@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const Container = styled.div`
     display: flex;
@@ -37,9 +38,16 @@ export const Container = styled.div`
         &:focus {
             outline: none;
         }
+        @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+            font-size: 1.5rem;
+        }
     }
 
     > svg {
         color: ${({theme}) => theme.COLORS.light_400};
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
     }
 `;

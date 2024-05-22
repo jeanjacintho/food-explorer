@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { LAYOUT_BREAKPOINTS } from "../../../styles/layoutBreakpoints";
 
 export const CartContainer = styled.div`
     margin: 0 auto;
@@ -6,11 +7,19 @@ export const CartContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        max-width: ${LAYOUT_BREAKPOINTS.MD};
+        width: 100%;
+        padding: 2.4rem;
+    }
 `;
 
 export const TableCart = styled.div`
     display: flex;
     gap: 2.4rem;
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        flex-direction: column;
+    }
 `;
 
 export const TableOrders = styled.div`
@@ -32,6 +41,12 @@ export const TableOrders = styled.div`
             font-size: 2rem;
             font-weight: 700;
             line-height: 160%;
+        }
+    }
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        .footerOrders {
+            flex-direction: column;
+            gap: 1.4rem;
         }
     }
 `;
@@ -89,6 +104,17 @@ export const TablePayments = styled.div`
         height: 100%;
         padding: 7.2rem;
         gap: 3.7rem;
+    }
+
+    @media screen and (max-width: ${LAYOUT_BREAKPOINTS.MD}){
+        > .paymentContent {
+            padding: 3.8rem;
+
+            > img {
+                width: 20rem;
+                height: 20rem;
+            }
+        }
     }
 `;
 

@@ -25,6 +25,7 @@ export function CartOrder() {
     const [isCardVisible, setIsCardVisible] = useState(false);
     const [isCardActive, setIsCardActive] = useState(false);
     const [isQRVisible, setIsQRVisible] = useState(false);
+    const [isFinallyOrder, setIsFinallyOrder] = useState(false);
 
     const [num, setNum] = useState('');
     const [cvc, setCvc] = useState('');
@@ -63,6 +64,7 @@ export function CartOrder() {
 
     function handleCloseCart() {
         setCloseCart(true);
+        setIsFinallyOrder(true);
     }
 
     const [isClockActive, setIsClockActive] = useState(false);
@@ -148,7 +150,7 @@ export function CartOrder() {
             <div><Button icon={PiCaretLeft} variant="outline" text="Voltar" onClick={handleBack}/></div>
             <h1>Meu pedido</h1>
             <TableCart>
-                <TableOrders>
+                <TableOrders style={{display: `${isFinallyOrder ? 'none': ''}`}}>
                     <CardOrderContainer>
                         {
                             cart && 
@@ -162,7 +164,7 @@ export function CartOrder() {
                         <Button text="Finalizar pedido" icon={PiBasket} onClick={handleCloseCart} loading={closeCart}/>
                     </div>
                 </TableOrders>
-                <TablePayments>
+                <TablePayments  style={{display: `${isFinallyOrder ? '': 'none'}`}}>
                     { closeCart === false && <h1>Finalize o pedido para ir para o processo de pagamento</h1>}
                     { closeCart === true &&
                     <>
