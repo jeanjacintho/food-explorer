@@ -8,6 +8,7 @@ import { api } from "../../../services/api";
 
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import imgLogo from "../../../assets/logo.svg";
 export function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -44,7 +45,7 @@ export function SignUp() {
     return (
         <SignUpContainer>
             <Logo>
-                <img src="./src/assets/logo.svg" alt="Logo" />
+                <img src={imgLogo} alt="Logo" />
                 <span>Food Explorer</span>
             </Logo>
             <FormLogin>

@@ -7,12 +7,12 @@ import { PiEnvelope, PiPassword, PiUserPlus } from "react-icons/pi";
 
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import imgLogo from "../../../assets/logo.svg";
 
 export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { loading } = useContext(AuthContext);
-
     const { signIn } = useAuth();
 
     function handleSignIn() {
@@ -21,7 +21,7 @@ export function SignIn() {
     return (
         <SignInContainer>
             <Logo>
-                <img src="./src/assets/logo.svg" alt="Logo" />
+                <img src={imgLogo} alt="Logo" />
                 <span>Food Explorer</span>
             </Logo>
             <FormLogin>
