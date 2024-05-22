@@ -14,7 +14,10 @@ database();
 app.use(express.json());
 app.use(cookieParser());
 app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 app.use(routes);
 app.use((err, request,response, next) => {
     if(err instanceof AppError) {
