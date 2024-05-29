@@ -89,7 +89,7 @@ FoodExplorer/
 ## Instalação e Execução
 Clone o projeto para o local desejado em seu computador.
 ```terminal
-$ git clone git@github.com:andreviapiana/Food-Explorer.git](https://github.com/jeanjacintho/food-explorer.git
+$ git clone git@github.com:jeanjacintho/food-explorer.git](https://github.com/jeanjacintho/food-explorer.git
 ```
 
 Executando o Backend
